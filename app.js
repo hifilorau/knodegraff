@@ -1,14 +1,16 @@
 // node has no globals so this is how we do dependency injection
 var express = require('express'),
     bodyParser = require('body-parser'),
-    OAuth = require('OAuth'),
     app = express(),
     Nedb = require('nedb'),
     db = new Nedb();
 
+requireDir('./controllers', { recurse: true });
+
+
 app.use(bodyParser.json());
 
-  friends = [{
+var friends = [{
     name: 'Matt',
     gender: 'm'
   }, {
@@ -64,6 +66,7 @@ var oauth = new OAuth.OAuth(
 
 // way to get user tweets by screen name
 var username = 'hifilorau';
+
 oauth.get(
   'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' + username,
   token, //test user token
@@ -72,5 +75,22 @@ oauth.get(
     if (e) console.error(e);
     data = JSON.parse(data);
     console.log(JSON.stringify(data, 0 , 2));
-    // console.log(res);
+    console.log(res);
   });
+
+
+  // API Notes
+  // data.user.name
+  // data.profile_image_url
+  // data.followers_count
+  //
+  // data.url
+  // data.geo
+  // data.created_at
+  // data.text
+  //
+  //
+  // http://t.co/XJqcxeQkzS
+  //
+  //
+  // twitter.com/ + screen_name + ‘/status/’ + id
