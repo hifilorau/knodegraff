@@ -15,6 +15,8 @@ app.use(bodyParser.json());
   }];
 
 app.use(express.static(__dirname + '/src'));
+app.use('/dist', express.static(__dirname + '/dist'));
+
 
 // Add a route, so when you HTTP request GET /api/friends, this route
 // will run.
@@ -60,5 +62,5 @@ oauth.get(
     if (e) console.error(e);
     data = JSON.parse(data);
     // console.log(JSON.stringify(data, 0 , 2));
-    console.log(res);
+    // console.log(res);
   });
