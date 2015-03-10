@@ -8,9 +8,15 @@
     "type": "git",
     "url": "https://github.com/tiy-durham-fe-2015/feclass"
   },
+  "scripts": {
+    "scss": "node-sass src/css/main.scss dist/css/main.css"
+  },
   "dependencies": {
     "body-parser": "^1.12.0",
     "express": "^4.12.2",
     "oauth": "^0.9.12"
+  },
+  "devDependencies": {
+    "node-sass": "^2.0.1"
   }
 }

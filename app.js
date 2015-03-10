@@ -14,8 +14,6 @@ app.use(bodyParser.json());
     gender: 'f'
   }];
 
-  twitterFollowers = [];
-
 app.use(express.static(__dirname + '/src'));
 
 // Add a route, so when you HTTP request GET /api/friends, this route
@@ -25,13 +23,6 @@ app.get('/api/friends', function(req, res) {
   // res = response(outgoing data to the client)
   res.json(friends);
 });
-
-app.get('/api/twitterFollowers', function(req, res) {
-  // req = request(incoming data from the client)
-  // res = response(outgoing data to the client)
-  res.json(friends);
-});
-
 
 app.post('/api/friends', function(req, res) {
   friends.push(req.body);
