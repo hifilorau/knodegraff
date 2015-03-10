@@ -1,12 +1,16 @@
 // node has no globals so this is how we do dependency injection
 var express = require('express'),
     bodyParser = require('body-parser'),
-    OAuth = require('OAuth'),
-    app = express();
+    app = express(),
+    Nedb = require('nedb'),
+    db = new Nedb();
+
+requireDir('./controllers', { recurse: true });
+
 
 app.use(bodyParser.json());
 
-  friends = [{
+var friends = [{
     name: 'Matt',
     gender: 'm'
   }, {
@@ -14,9 +18,9 @@ app.use(bodyParser.json());
     gender: 'f'
   }];
 
-  twitterFollowers = [];
-
 app.use(express.static(__dirname + '/src'));
+app.use('/dist', express.static(__dirname + '/dist'));
+
 
 // Add a route, so when you HTTP request GET /api/friends, this route
 // will run.
@@ -26,16 +30,15 @@ app.get('/api/friends', function(req, res) {
   res.json(friends);
 });
 
-app.get('/api/twitterFollowers', function(req, res) {
-  // req = request(incoming data from the client)
-  // res = response(outgoing data to the client)
-  res.json(friends);
-});
-
-
 app.post('/api/friends', function(req, res) {
-  friends.push(req.body);
-  res.send(req.body);
+  var friend = {
+    name: req.body.name,
+    gender: req.body.gender
+  };
+
+  db.insert(friend, function(err, friendsRecord) {
+    res.json(friendRecord);
+  })
 });
 
 var server = app.listen(process.env.PORT || 3000, function () {
@@ -61,13 +64,33 @@ var oauth = new OAuth.OAuth(
   'HMAC-SHA1'
 );
 
+// way to get user tweets by screen name
+var username = 'hifilorau';
+
 oauth.get(
-  'https://api.twitter.com/1.1/trends/place.json?id=23424977',
+  'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' + username,
   token, //test user token
   secret, //test user secret
   function (e, data, res){
     if (e) console.error(e);
     data = JSON.parse(data);
-    // console.log(JSON.stringify(data, 0 , 2));
+    console.log(JSON.stringify(data, 0 , 2));
     console.log(res);
   });
+
+
+  // API Notes
+  // data.user.name
+  // data.profile_image_url
+  // data.followers_count
+  //
+  // data.url
+  // data.geo
+  // data.created_at
+  // data.text
+  //
+  //
+  // http://t.co/XJqcxeQkzS
+  //
+  //
+  // twitter.com/ + screen_name + ‘/status/’ + id
