@@ -1,0 +1,16 @@
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+Error: This socket is closed.
+    at WriteStream.Socket._write (net.js:638:19)
+    at doWrite (_stream_writable.js:226:10)
+    at writeOrBuffer (_stream_writable.js:216:5)
+    at WriteStream.Writable.write (_stream_writable.js:183:11)
+    at WriteStream.Socket.write (net.js:616:40)
+    at WriteStream.stream.write (/usr/local/lib/node_modules/npm/node_modules/ansi/lib/newlines.js:36:21)
+    at Cursor.write (/usr/local/lib/node_modules/npm/node_modules/ansi/lib/ansi.js:157:23)
+    at Colorer.setColorCode [as _setColorCode] (/usr/local/lib/node_modules/npm/node_modules/ansi/lib/ansi.js:209:38)
+    at Colorer.(anonymous function) [as white] (/usr/local/lib/node_modules/npm/node_modules/ansi/lib/ansi.js:263:10)
+    at EventEmitter.log.write (/usr/local/lib/node_modules/npm/node_modules/npmlog/log.js:118:41)
+    at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npmlog/log.js:100:12)
