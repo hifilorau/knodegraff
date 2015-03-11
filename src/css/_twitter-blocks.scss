@@ -1,0 +1,47 @@
+.twitter-block-wrap {
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+
+
+  li {
+    display: inline-box;
+    position: relative;
+    border: 1px black solid;
+    box-sizing: border-box;
+
+    width: 25em;
+    height: 15em;
+    list-style: none;
+    box-sizing: border-box;
+  }
+}
+
+  .twitter-user {
+    padding: 1.5em;
+  }
+
+  .score-wrap {
+    font-size: 1.5em;
+    position: absolute;
+    right: 19%;
+    top: 38.2%;
+    transform:translate(0, -50%);
+  }
+
+  .score-actual {
+    padding-top: .5rem;
+  }
+
+  .sentiment-chart-wrap{
+    box-sizing: border-box;
+    position:absolute;
+    left: 19%;
+    font-size: 1.5em;
+    top: 38.2%;
+    transform:translate(0, -50%);
+    padding:
+  }
