@@ -31,14 +31,3 @@ module.exports = {
     );
   }
 };
-
-
-
-// // Some other file.js
-// var twitter = require('./controllers/twitter');
-// app.get('/api/tweets/:username', function (req, res) {
-//   twitter.getTweets(req.params.username, function (tweets) {
-//     //
-//     res.json(tweets);
-//   })
-// });
